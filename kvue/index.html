@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+        <script src="compile.js"></script>
+        <script src="kvue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <!-- prettier-ignore -->
+            <p>{{name}}</p>
+            <p k-text="name"><span></span></p>
+            <div k-html="html"></div>
+            <!-- prettier-ignore -->
+            <p>{{age}}</p>
+            <input type="text" k-model="name" />
+            <button @click="changeName">点我点我点我</button>
+            <!-- prettier-ignore -->
+        </div>
+        <script>
+            const app = new KVue({
+                el: "#app",
+                data: {
+                    name: "hulingly",
+                    age: 30,
+                    html: "<h1>这是一个标题</h1>",
+                    foo: "foo",
+                    bar: {
+                        mua: "mua"
+                    }
+                },
+                created() {
+                    console.log("开始啦");
+                    setTimeout(() => {
+                        this.name = "我是测试";
+                    }, 1500);
+                },
+                methods: {
+                    changeName() {
+                        this.name = "哈喽，I am hulingly";
+                        this.age = 31;
+                        console.log("点击了按钮");
+                    }
+                }
+            });
+            // app.foo = 123;
+            // app.bar.mua = 123;
+            // console.log(app.foo);
+            // console.log(app.bar.mua);
+        </script>
+    </body>
+</html>
